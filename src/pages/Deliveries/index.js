@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StatusBar, View, TouchableOpacity } from 'react-native';
-import { format, parseISO } from 'date-fns';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
 import { signOut } from '~/store/modules/auth/actions';
+
+import Delivery from './Delivery';
 
 import {
   Container,
@@ -19,19 +20,6 @@ import {
   FilterOptionContainer,
   FilterOptionText,
   DeliveriesList,
-  Delivery,
-  DeliveryContent,
-  DeliveryTitle,
-  DeliveryTitleText,
-  DeliveryProgressContainer,
-  DeliveryProgressBullet,
-  DeliveryProgressText,
-  DeliveryProgressTextContainer,
-  DeliveryInfo,
-  DeliveryInfoItemContainer,
-  DeliveryInfoItemProperty,
-  DeliveryInfoItemValue,
-  MoreDetailsText,
 } from './styles';
 
 export default function Deliveries({ navigation }) {
@@ -53,11 +41,6 @@ export default function Deliveries({ navigation }) {
   function handleLogout() {
     dispatch(signOut());
   }
-
-  const getFormattedDate = useCallback(
-    date => format(parseISO(date), "dd'/'MM'/'y"),
-    []
-  );
 
   const getFilteredDeliveries = useMemo(() => {
     if (filter === 'pending') {
@@ -120,55 +103,7 @@ export default function Deliveries({ navigation }) {
         <DeliveriesList
           data={getFilteredDeliveries}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <Delivery>
-              {console.tron.log(item)}
-              <DeliveryContent>
-                <DeliveryTitle>
-                  <Icon name="local-shipping" color="#7D40E7" size={20} />
-                  <DeliveryTitleText>Encomenda {item.id}</DeliveryTitleText>
-                </DeliveryTitle>
-                <DeliveryProgressContainer>
-                  <DeliveryProgressBullet filled />
-                  <DeliveryProgressBullet filled={Boolean(item.start_date)} />
-                  <DeliveryProgressBullet filled={Boolean(item.end_date)} />
-                </DeliveryProgressContainer>
-
-                <DeliveryProgressTextContainer>
-                  <DeliveryProgressText>
-                    Aguardando retirada
-                  </DeliveryProgressText>
-                  <DeliveryProgressText style={{ textAlign: 'center' }}>
-                    Retirada
-                  </DeliveryProgressText>
-                  <DeliveryProgressText style={{ textAlign: 'right' }}>
-                    Entregue
-                  </DeliveryProgressText>
-                </DeliveryProgressTextContainer>
-              </DeliveryContent>
-              <DeliveryInfo>
-                <DeliveryInfoItemContainer>
-                  <DeliveryInfoItemProperty>Data</DeliveryInfoItemProperty>
-                  <DeliveryInfoItemValue>
-                    {getFormattedDate(item.created_at)}
-                  </DeliveryInfoItemValue>
-                </DeliveryInfoItemContainer>
-
-                <DeliveryInfoItemContainer>
-                  <DeliveryInfoItemProperty>Cidade</DeliveryInfoItemProperty>
-                  <DeliveryInfoItemValue>
-                    {item.recipient.city}
-                  </DeliveryInfoItemValue>
-                </DeliveryInfoItemContainer>
-
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Details')}
-                >
-                  <MoreDetailsText>Ver detalhes</MoreDetailsText>
-                </TouchableOpacity>
-              </DeliveryInfo>
-            </Delivery>
-          )}
+          renderItem={({ item }) => <Delivery item={item} />}
         />
       </Container>
     </>

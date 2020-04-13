@@ -60,12 +60,6 @@ export const FilterOptionText = styled.Text`
   font-weight: bold;
 `;
 
-export const ActivityIndicatorContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const DeliveriesList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
 })``;

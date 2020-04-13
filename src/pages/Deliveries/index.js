@@ -1,17 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  StatusBar,
-  View,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import { StatusBar, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
 import { signOut } from '~/store/modules/auth/actions';
 
 import Delivery from './Delivery';
+import LoadingIcon from '~/components/LoadingIcon';
 
 import {
   Container,
@@ -24,7 +20,6 @@ import {
   DeliveriesText,
   FilterOptionContainer,
   FilterOptionText,
-  ActivityIndicatorContainer,
   DeliveriesList,
 } from './styles';
 
@@ -111,9 +106,7 @@ export default function Deliveries({ navigation }) {
         </FilterDeliveriesContainer>
 
         {loading ? (
-          <ActivityIndicatorContainer>
-            <ActivityIndicator />
-          </ActivityIndicatorContainer>
+          <LoadingIcon />
         ) : (
           <DeliveriesList
             data={getFilteredDeliveries}

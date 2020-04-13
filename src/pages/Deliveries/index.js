@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StatusBar, View, TouchableOpacity } from 'react-native';
+import {
+  StatusBar,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '~/services/api';
@@ -19,20 +24,25 @@ import {
   DeliveriesText,
   FilterOptionContainer,
   FilterOptionText,
+  ActivityIndicatorContainer,
   DeliveriesList,
 } from './styles';
 
 export default function Deliveries({ navigation }) {
   const [deliveries, setDeliveries] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('pending');
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth.user);
 
   useEffect(() => {
     async function loadDeliveries() {
+      setLoading(true);
+
       const response = await api.get(`deliverymen/${user.id}/deliveries`);
 
       setDeliveries(response.data);
+      setLoading(false);
     }
 
     loadDeliveries();
@@ -100,11 +110,17 @@ export default function Deliveries({ navigation }) {
           </FilterOptionContainer>
         </FilterDeliveriesContainer>
 
-        <DeliveriesList
-          data={getFilteredDeliveries}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <Delivery item={item} />}
-        />
+        {loading ? (
+          <ActivityIndicatorContainer>
+            <ActivityIndicator />
+          </ActivityIndicatorContainer>
+        ) : (
+          <DeliveriesList
+            data={getFilteredDeliveries}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => <Delivery item={item} />}
+          />
+        )}
       </Container>
     </>
   );

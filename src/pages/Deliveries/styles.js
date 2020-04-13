@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components/native';
+import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
   flex: 1;
@@ -60,22 +60,9 @@ export const FilterOptionText = styled.Text`
   font-weight: bold;
 `;
 
-export const DeliveriesList = styled.FlatList.attrs({
-  showsVerticalScrollIndicator: false,
-})``;
-
-export const Delivery = styled.View`
-  margin: 15px 0 15px;
-  border: 1px solid #0000004a;
-  border-radius: 4px;
-`;
-
-export const DeliveryContent = styled.View`
-  padding: 25px;
-`;
-
-export const DeliveryTitle = styled.View`
-  flex-direction: row;
+export const ActivityIndicatorContainer = styled.View`
+  flex: 1;
+  justify-content: center;
   align-items: center;
 `;
 

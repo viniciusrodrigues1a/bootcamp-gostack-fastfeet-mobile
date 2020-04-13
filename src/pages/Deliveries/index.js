@@ -53,7 +53,7 @@ export default function Deliveries({ navigation }) {
 
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#bbb" />
       <Container>
         <DeliverymanInfoContainer>
           <View style={{ flexDirection: 'row' }}>

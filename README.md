@@ -28,7 +28,7 @@ Estas instruçōes te darão uma cópia funcional do projeto na sua máquina loc
 - JDK
 - Android SDK
 - React Native CLI
-- [Rodar a aplicação backend](https://github.com/viniciusrodrigues1a/bootcamp-gostack-gobarber-api)
+- [Rodar a aplicação backend](https://github.com/viniciusrodrigues1a/bootcamp-gostack-fastfeet-api)
 
 ### Instalar as dependências
 

@@ -11,9 +11,9 @@ function* signIn({ payload }) {
 
     const response = yield call(api.get, `/deliverymen/${id}`);
 
-    const { id: userId, name, email, avatar } = response.data;
+    const { id: userId, name, email, avatar, created_at } = response.data;
 
-    yield put(signInSuccess({ id: userId, name, email, avatar }));
+    yield put(signInSuccess({ id: userId, name, email, avatar, created_at }));
   } catch (err) {
     console.tron.log('here');
     yield put(signInFailure());

@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { format, parseISO } from 'date-fns';
+import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -73,3 +74,14 @@ export default function Delivery({ item }) {
     </Container>
   );
 }
+
+Delivery.propTypes = {
+  item: PropTypes.shape({
+    start_date: PropTypes.instanceOf(Date),
+    end_date: PropTypes.instanceOf(Date),
+    created_at: PropTypes.instanceOf(Date),
+    recipient: PropTypes.shape({
+      city: PropTypes.string,
+    }),
+  }).isRequired,
+};

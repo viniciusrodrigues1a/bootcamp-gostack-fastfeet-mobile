@@ -77,9 +77,9 @@ export default function Delivery({ item }) {
 
 Delivery.propTypes = {
   item: PropTypes.shape({
-    start_date: PropTypes.instanceOf(Date),
-    end_date: PropTypes.instanceOf(Date),
-    created_at: PropTypes.instanceOf(Date),
+    start_date: PropTypes.string,
+    end_date: PropTypes.string,
+    created_at: PropTypes.string,
     recipient: PropTypes.shape({
       city: PropTypes.string,
     }),

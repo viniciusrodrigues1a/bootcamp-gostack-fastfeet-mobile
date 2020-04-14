@@ -23,7 +23,7 @@ import {
   DeliveriesList,
 } from './styles';
 
-export default function Deliveries({ navigation }) {
+export default function Deliveries() {
   const [deliveries, setDeliveries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState('pending');

@@ -71,5 +71,9 @@
     <string>Octicons.ttf</string>
     <string>Zocial.ttf</string>
   </array>
+
+  <!-- Required with iOS 10 and higher -->
+  <key>NSCameraUsageDescription</key>
+  <string>FastFeet wants permission to access the camera.</string>
 </dict>
 </plist>

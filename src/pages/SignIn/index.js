@@ -30,10 +30,8 @@ export default function SignIn() {
           onChangeText={setUserId}
           onSubmitEditing={handleLogin}
         />
-        <SubmitButton>
-          <SubmitButtonText onPress={handleLogin}>
-            Entrar no sistema
-          </SubmitButtonText>
+        <SubmitButton onPress={handleLogin}>
+          <SubmitButtonText>Entrar no sistema</SubmitButtonText>
         </SubmitButton>
       </Container>
     </>

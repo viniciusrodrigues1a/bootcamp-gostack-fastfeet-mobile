@@ -77,9 +77,15 @@ export default function Delivery({ item }) {
 
 Delivery.propTypes = {
   item: PropTypes.shape({
-    start_date: PropTypes.string,
-    end_date: PropTypes.string,
-    created_at: PropTypes.string,
+    start_date: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.oneOf([null]),
+    ]),
+    end_date: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
+    created_at: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.oneOf([null]),
+    ]),
     recipient: PropTypes.shape({
       city: PropTypes.string,
     }),

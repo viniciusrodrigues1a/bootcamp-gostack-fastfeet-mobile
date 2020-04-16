@@ -151,9 +151,18 @@ Details.propTypes = {
       delivery: PropTypes.shape({
         id: PropTypes.number,
         product: PropTypes.string,
-        start_date: PropTypes.oneOf([PropTypes.string, null]),
-        end_date: PropTypes.oneOf([PropTypes.string, null]),
-        canceled_at: PropTypes.oneOf([PropTypes.string, null]),
+        start_date: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.oneOf([null]),
+        ]),
+        end_date: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.oneOf([null]),
+        ]),
+        canceled_at: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.oneOf([null]),
+        ]),
         recipient: PropTypes.shape({
           name: PropTypes.string,
           street: PropTypes.string,

@@ -49,6 +49,8 @@ export default function Details({ route, navigation }) {
     [delivery]
   );
 
+  const canExecuteAnAction = useMemo(() => Boolean(delivery.start_date), []);
+
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7D40E7" />
@@ -106,11 +108,18 @@ export default function Details({ route, navigation }) {
           >
             <ActionsContainer>
               <Action
-                onPress={() =>
-                  navigation.navigate('NewProblem', { id: delivery.id })
+                onPress={
+                  canExecuteAnAction
+                    ? () =>
+                        navigation.navigate('NewProblem', { id: delivery.id })
+                    : () => {}
                 }
               >
-                <Icon name="cancel" size={40} color="#E74040" />
+                <Icon
+                  name="cancel"
+                  size={40}
+                  color={canExecuteAnAction ? '#E74040' : '#aaa'}
+                />
                 <ActionText>Informar problema</ActionText>
               </Action>
               <Action
@@ -119,19 +128,34 @@ export default function Details({ route, navigation }) {
                   borderLeftWidth: 1,
                   borderColor: '#aaa',
                 }}
-                onPress={() =>
-                  navigation.navigate('Problems', { id: delivery.id })
+                onPress={
+                  canExecuteAnAction
+                    ? () => navigation.navigate('Problems', { id: delivery.id })
+                    : () => {}
                 }
               >
-                <Icon name="info" size={40} color="#E7BA40" />
+                <Icon
+                  name="info"
+                  size={40}
+                  color={canExecuteAnAction ? '#E7BA40' : '#aaa'}
+                />
                 <ActionText>Visualizar problemas</ActionText>
               </Action>
               <Action
-                onPress={() =>
-                  navigation.navigate('FinishDelivery', { id: delivery.id })
+                onPress={
+                  canExecuteAnAction
+                    ? () =>
+                        navigation.navigate('FinishDelivery', {
+                          id: delivery.id,
+                        })
+                    : () => {}
                 }
               >
-                <Icon name="check-circle" size={40} color="#7D40E7" />
+                <Icon
+                  name="check-circle"
+                  size={40}
+                  color={canExecuteAnAction ? '#7D40E7' : '#aaa'}
+                />
                 <ActionText>Confirmar entrega</ActionText>
               </Action>
             </ActionsContainer>

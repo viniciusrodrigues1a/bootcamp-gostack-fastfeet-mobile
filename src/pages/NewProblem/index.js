@@ -20,6 +20,9 @@ export default function NewProblem({ route }) {
           description: problem,
           delivery_id: id,
         });
+
+        setProblem('');
+
         Alert.alert('Problema registrado com sucesso!');
       } catch (err) {
         Alert.alert('Algo deu errado!');

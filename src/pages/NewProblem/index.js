@@ -39,8 +39,8 @@ export default function NewProblem({ route }) {
             onChangeText={setProblem}
           />
         </ColoredContainer.Content>
-        <SendButton>
-          <SendButtonText onPress={createProblem}>Enviar</SendButtonText>
+        <SendButton onPress={createProblem}>
+          <SendButtonText>Enviar</SendButtonText>
         </SendButton>
       </ColoredContainer.ContentWrapper>
     </ColoredContainer.Container>

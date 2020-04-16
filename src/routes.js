@@ -76,6 +76,7 @@ export default function Routes({ signedIn }) {
               tabBarOptions={{
                 activeTintColor: '#7D40E7',
                 inactiveTintColor: '#999',
+                keyboardHidesTabBar: true,
               }}
             >
               <Tab.Screen
